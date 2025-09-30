@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto de Tesis - Impacto Tecnológico</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+Pro:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.6;
+            color: #3e2723;
+            background: #faf7f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+
+        footer {
+            background: #3e2723;
+            color: #f5f0e8;
+            text-align: center;
+            padding: 15px 20px;
+            margin-top: auto;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: #ffffff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(62, 39, 35, 0.1);
+            border: 1px solid #e8e4e1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .header-content {
+            flex: 1;
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        .header-logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            object-position: top;
+            flex-shrink: 0;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #3e2723;
+            margin-bottom: 15px;
+            font-weight: 900;
+            text-shadow: 1px 1px 2px rgba(62, 39, 35, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #5d4037;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .navigation {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #8d6e63, #6d4c41);
+            color: #f5f0e8;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(141, 110, 99, 0.2);
+            min-width: 160px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 12px rgba(141, 110, 99, 0.3);
+            background: linear-gradient(45deg, #6d4c41, #8d6e63);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(45deg, #a1887f, #8d6e63);
+            box-shadow: 0 2px 8px rgba(161, 136, 127, 0.3);
+        }
+
+        .content-section {
+            display: none;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(62, 39, 35, 0.1);
+            margin-bottom: 20px;
+            animation: fadeIn 0.3s ease-in;
+            border: 1px solid #e8e4e1;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .content-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #3e2723;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #8d6e63;
+            padding-bottom: 8px;
+        }
+
+        .content-section h3 {
+            font-size: 1.4rem;
+            color: #5d4037;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .content-section p {
+            margin-bottom: 15px;
+            text-align: justify;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            background: #f5f3f0;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 3px solid #8d6e63;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .media-item {
+            background: #efebe9;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid #d7ccc8;
+        }
+
+        .media-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(62, 39, 35, 0.2);
+        }
+
+        .media-placeholder {
+            background: linear-gradient(45deg, #d7ccc8, #bcaaa4);
+            height: 200px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #5d4037;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #8d6e63 0%, #6d4c41 100%);
+            color: #f5f0e8;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .solutions-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .solution-card {
+            background: linear-gradient(135deg, #a5d6a7 0%, #81c784 100%);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(62, 39, 35, 0.1);
+            border: 1px solid #66bb6a;
+        }
+
+        .solution-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #2e7d32;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .subtitle { font-size: 1.1rem; }
+            .nav-btn { padding: 10px 16px; font-size: 0.9rem; min-width: 140px; }
+            .navigation { gap: 8px; }
+            header {
+                flex-direction: column;
+            }
+            .header-logo {
+                width: 70px;
+                height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%232e4478;%7D.cls-2%7Bfill:%23c41e3a;%7D.cls-3%7Bfill:%23ffd700;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M100,20 L30,40 L30,100 C30,140 60,170 100,180 C140,170 170,140 170,100 L170,40 Z'/%3E%3Cpath class='cls-2' d='M85,60 L115,60 L115,90 L130,90 L100,120 L70,90 L85,90 Z'/%3E%3Ctext x='100' y='55' font-family='Arial' font-size='14' fill='%23c41e3a' text-anchor='middle' font-weight='bold'%3EINSTITUTO%3C/text%3E%3Ctext x='100' y='145' font-family='Arial' font-size='11' fill='%232e4478' text-anchor='middle'%3ELA SMA. TRINIDAD%3C/text%3E%3C/svg%3E" alt="Instituto La Santísima Trinidad" class="header-logo">
+            <div class="header-content">
+                <h1>PROYECTO DE TESIS: El impacto de la tecnología en la salud mental y habilidades sociales de los niños</h1>
+                <div class="subtitle">
+                    <strong>INSTITUTO LA SANTÍSIMA TRINIDAD</strong><br>
+                    <strong>TRABAJO INTEGRADOR / ORIENTACIÓN INFORMÁTICA</strong>
+                </div>
+            </div>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%232e4478;%7D.cls-2%7Bfill:%23c41e3a;%7D%3C/style%3E%3C/defs%3E%3Ccircle class='cls-1' cx='100' cy='100' r='70'/%3E%3Crect class='cls-1' x='70' y='30' width='8' height='60'/%3E%3Crect class='cls-1' x='122' y='30' width='8' height='60'/%3E%3Crect class='cls-1' x='70' y='25' width='60' height='8'/%3E%3Cpath class='cls-2' d='M85,80 L115,80 L115,110 L130,110 L100,140 L70,110 L85,110 Z'/%3E%3Ctext x='100' y='115' font-family='Arial' font-size='28' fill='%23c41e3a' text-anchor='middle' font-weight='bold'%3EESIL%3C/text%3E%3C/svg%3E" alt="ESIL" class="header-logo">
+        </header>
+
+        <nav class="navigation">
+            <button class="nav-btn active" onclick="showSection('introduccion')">Introducción</button>
+            <button class="nav-btn" onclick="showSection('causas')">Causas y Consecuencias</button>
+            <button class="nav-btn" onclick="showSection('beneficios')">Beneficios de la Tecnología</button>
+            <button class="nav-btn" onclick="showSection('fuentes')">Fuentes</button>
+            <button class="nav-btn" onclick="showSection('conclusion')">Conclusión</button>
+        </nav>
+
+        <section id="introduccion" class="content-section active">
+            <h2>Introducción al Problema</h2>
+            
+            <div class="highlight">
+                <p><strong>¿Por qué elegimos este tema?</strong> La tecnología forma parte de la vida cotidiana de los niños y está cambiando la manera en que se relacionan. Nos parece importante analizarlo porque, aunque tiene beneficios como facilitar la comunicación y el acceso a la información, también genera consecuencias negativas en la socialización presencial.</p>
+            </div>
+
+            <p>El impacto de la tecnología en la habilidad de socializar de los niños comenzó a notarse a finales de los años 90 con el auge de las computadoras y los videojuegos en las casas.</p>
+
+            <h3>Evolución Histórica</h3>
+            <p>La llegada de la televisión marcó un punto de inflexión, introduciendo el primer medio de consumo masivo en el hogar que impactaría el desarrollo infantil. Si bien la televisión de calidad podría servir como una herramienta educativa y de reforzamiento emocional, su uso excesivo ya planteaba los primeros debates sobre el sedentarismo y la adquisición de valores a partir de los contenidos transmitidos, como la violencia.</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">95.8%</div>
+                    <p>de menores de 10-15 años usan computadora en España</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">96.0%</div>
+                    <p>navega por Internet regularmente</p>
+                </div>
+            </div>
+
+            <p>La verdadera transformación llegó con la evolución tecnológica que llevó a la computadora personal a la proliferación de dispositivos móviles como teléfonos inteligentes y tabletas. Esta ubicuidad digital ha posicionado a los niños en un entorno donde el contacto diario con la tecnología es una realidad desde edades muy tempranas.</p>
+        </section>
+
+        <section id="causas" class="content-section">
+            <h2>Causas, Consecuencias e Impacto Social</h2>
+            
+            <h3>Principales Causas</h3>
+            <p>El uso masivo de la tecnología no es una casualidad; está impulsado por el diseño intrínseco de las plataformas. Las redes sociales, los videojuegos y las aplicaciones se crean con características que buscan generar una respuesta de gratificación inmediata, como notificaciones automáticas, el scroll infinito o los "me gusta", lo que desencadena la liberación de dopamina.</p>
+
+            <div class="highlight">
+                <p><strong>Factor Clave:</strong> La delegación de la crianza a las pantallas. Los padres, en ocasiones, delegan la responsabilidad de la atención y el entretenimiento a los dispositivos digitales, lo que disminuye las oportunidades de interacción de calidad.</p>
+            </div>
+
+            <h3>Consecuencias Principales</h3>
+            <p>Muchos niños desarrollan dificultades para establecer y mantener conversaciones en persona, ya que no logran ejercitar habilidades básicas como interpretar gestos, emociones o lenguaje corporal. También tienden al aislamiento, mostrando preferencia por las pantallas antes que por la compañía de sus pares.</p>
+
+            <h3>Impacto en la Comunicación Interpersonal</h3>
+            <p>La comunicación digital, basada en texto o imágenes, a menudo carece de las señales no verbales fundamentales, como el lenguaje corporal, las expresiones faciales y el tono de voz. La dependencia de estas formas de comunicación puede llevar a una "discapacidad no verbal" que dificulta la lectura de las emociones humanas.</p>
+
+            <h3>Riesgos Emocionales y de Salud Mental</h3>
+            <p>El consumo excesivo de redes sociales expone a los niños a una comparación constante con las vidas aparentemente perfectas de los demás, lo que puede derivar en baja autoestima y una imagen corporal deteriorada. Un fenómeno particularmente nocivo es el FOMO (miedo a perderse algo), que intensifica la ansiedad y la soledad.</p>
+        </section>
+
+        <section id="beneficios" class="content-section">
+            <h2>Beneficios y Oportunidades de la Tecnología</h2>
+            
+            <h3>El Rol Social de los Videojuegos</h3>
+            <p>A pesar de los riesgos, la tecnología también ofrece importantes oportunidades para el desarrollo social. El rol social de los videojuegos, en particular, presenta un contrapunto crucial a la narrativa del aislamiento.</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">89%</div>
+                    <p>de la Gen Z cree que los videojuegos les ayudan a hacer amistades</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">93%</div>
+                    <p>ha jugado acompañada</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">70%</div>
+                    <p>ha conocido nuevas personas</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">55%</div>
+                    <p>de jugadores juega con otros semanalmente</p>
+                </div>
+            </div>
+
+            <p>Esta dinámica de socialización no se limita a los jóvenes. El éxito de esta forma de interacción reside en la naturaleza colaborativa de muchos juegos, que recompensa la cooperación y la buena actitud.</p>
+
+            <h3>Fomento de Habilidades Cognitivas y Sociales</h3>
+            <p>Los videojuegos pueden enseñar resiliencia al requerir que los jugadores superen desafíos, fallen y vuelvan a intentarlo. Las plataformas digitales también impulsan el pensamiento crítico, el razonamiento lógico, la resolución de problemas y la creatividad.</p>
+
+            <div class="highlight">
+                <p><strong>Paradoja Digital:</strong> Mientras que plataformas como los videojuegos promueven una interacción activa y un objetivo común, las redes sociales se basan en una interacción pasiva y en la comparación, lo que puede exacerbar los sentimientos de soledad.</p>
+            </div>
+
+            <p>En el ámbito educativo, herramientas de colaboración como Google Drive, Trello y Slack facilitan el trabajo en grupo, fomentando la cooperación y la coordinación entre pares.</p>
+        </section>
+
+        <section id="fuentes" class="content-section">
+            <h2>Fuentes</h2>
+            
+            <div style="line-height: 1.8;">
+                <p><strong>1.</strong> universidadeuropea.com, fecha de acceso: agosto 29, 2025, <a href="https://universidadeuropea.com/blog/habilidades-sociales-ninos/#:~:text=y%203%20a%C3%B1os.-,%C2%BFQu%C3%A9%20son%20las%20habilidades%20sociales%3F,deseos%20respetando%20a%20los%20dem%C3%A1s." target="_blank" style="color: #8d6e63; text-decoration: none;">https://universidadeuropea.com/blog/habilidades-sociales-ninos/</a></p>
+                
+                <p><strong>2.</strong> Habilidades sociales en niños: qué son y cómo trabajarlas | Blog UE - Universidad Europea, fecha de acceso: agosto 29, 2025, <a href="https://universidadeuropea.com/blog/habilidades-sociales-ninos/" target="_blank" style="color: #8d6e63; text-decoration: none;">https://universidadeuropea.com/blog/habilidades-sociales-ninos/</a></p>
+                
+                <p><strong>3.</strong> 7 aspectos en los que la tecnología ha cambiado la infancia | iWomanish, fecha de acceso: agosto 29, 2025, <a href="https://www.iwomanish.com/7-formas-en-las-que-la-tecnologia-ha-cambiado-la-infancia/" target="_blank" style="color: #8d6e63; text-decoration: none;">https://www.iwomanish.com/7-formas-en-las-que-la-tecnologia-ha-cambiado-la-infancia/</a></p>
+                
+                <p><strong>4.</strong> Conoce algunos tips para evitar el uso excesivo de aparatos electrónicos en los niños - BMI Internacional, fecha de acceso: agosto 29, 2025, <a href="https://www.bmicos.com/blog/conoce-algunos-tips-para-evitar-el-uso-excesivo-de-aparatos-electronicos-en-los-ninos/" target="_blank" style="color: #8d6e63; text-decoration: none;">https://www.bmicos.com/blog/conoce-algunos-tips-para-evitar-el-uso-excesivo-de-aparatos-electronicos-en-los-ninos/</a></p>
+                
+                <p><strong>5.</strong> ESTUDIO DE REVISIÓN BIBLIOGRÁFICA Efecto de la TV en las emociones de los niños - Consejo Nacional de Televisión, fecha de acceso: agosto 29, 2025, <a href="https://www.cntv.cl/wp-content/uploads/2020/04/efectos_emocionales_tv_nin__os.pdf" target="_blank" style="color: #8d6e63; text-decoration: none;">https://www.cntv.cl/wp-content/uploads/2020/04/efectos_emocionales_tv_nin__os.pdf</a></p>
+                
+                <p><strong>6.</strong> Televisión y niños: uso responsable y consejos | CUN, fecha de acceso: agosto 29, 2025, <a href="https://www.cun.es/chequeos-salud/infancia/television-ninos" target="_blank" style="color: #8d6e63; text-decoration: none;">https://www.cun.es/chequeos-salud/infancia/television-ninos</a></p>
+                
+                <p><strong>7.</strong> Uso de la tecnología en la primera infancia: qué saber | UNICEF, fecha de acceso: agosto 29, 2025, <a href="https://www.unicef.org/uruguay/crianza/digital/uso-de-la-tecnologia-en-la-primera-infancia-que-saber" target="_blank" style="color: #8d6e63; text-decoration: none;">https://www.unicef.org/uruguay/crianza/digital/uso-de-la-tecnologia-en-la-primera-infancia-que-saber</a></p>
+                
+                <p><strong>8.</strong> USO DE LAS TECNOLOGÍAS POR NIÑOS DE HASTA 8 AÑOS Un estudio cualitativo en siete países - INTEF, fecha de acceso: agosto 29, 2025, <a href="https://intef.es/wp-content/uploads/2016/03/2016_0220-Informe_TIC_ninos_8years-INTEF.pdf" target="_blank" style="color: #8d6e63; text-decoration: none;">https://intef.es/wp-content/uploads/2016/03/2016_0220-Informe_TIC_ninos_8years-INTEF.pdf</a></p>
+                
+                <p><strong>9.</strong> Comunicado: Las grandes cantidades de tiempo de pantalla ..., fecha de acceso: agosto 29, 2025, <a href="https://espanol.nichd.nih.gov/noticias/prensa/112519-tiempo-pantalla" target="_blank" style="color: #8d6e63; text-decoration: none;">https://espanol.nichd.nih.gov/noticias/prensa/112519-tiempo-pantalla</a></p>
+                
+                <p><strong>10.</strong> ¿Qué habilidades necesitan los niños para la tecnología del futuro? - Internet Matters, fecha de acceso: agosto 29, 2025, <a href="https://www.internetmatters.org/es/tech-and-kids-digital-futures/what-skills-do-kids-need-for-future-technology/" target="_blank" style="color: #8d6e63; text-decoration: none;">https://www.internetmatters.org/es/tech-and-kids-digital-futures/what-skills-do-kids-need-for-future-technology/</a></p>
+                
+                <p><strong>11.</strong> Percepciones de futuros docentes sobre el uso de tecnología en educación inicial, fecha de acceso: agosto 29, 2025, <a href="https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S1607-40412019000100123" target="_blank" style="color: #8d6e63; text-decoration: none;">https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S1607-40412019000100123</a></p>
+                
+                <p><strong>12.</strong> Nota de Prensa: Encuesta sobre Equipamiento y Uso de Tecnologías de la Información y Comunicación (TIC) en los Hogares. Año 2024. - INE, fecha de acceso: agosto 29, 2025, <a href="https://www.ine.es/dyngs/Prensa/TICH2024.htm" target="_blank" style="color: #8d6e63; text-decoration: none;">https://www.ine.es/dyngs/Prensa/TICH2024.htm</a></p>
+                
+                <p><strong>13.</strong> El impacto de las redes sociales en niños y cómo reconocer las señales de alerta, fecha de acceso: agosto 29, 2025, <a href="https://www.allianzcare.com/es/acerca-de-nosotros/blog/el-impacto-de-las-redes-sociales-en-ninos-y-el-reconocimiento-de-senales-de-alerta.html" target="_blank" style="color: #8d6e63; text-decoration: none;">https://www.allianzcare.com/es/acerca-de-nosotros/blog/el-impacto-de-las-redes-sociales-en-ninos-y-el-reconocimiento-de-senales-de-alerta.html</a></p>
+                
+                <p><strong>14.</strong> Impacto negativo del uso de dispositivos digitales en el desarrollo de niños y niñas, fecha de acceso: agosto 29, 2025, <a href="https://neuro-centro.com/uso-de-dispositivos-digitales-e-impacto-negativo-en-el-desarrollo-de-los-ninos-y-ninas/" target="_blank" style="color: #8d6e63; text-decoration: none;">https://neuro-centro.com/uso-de-dispositivos-digitales-e-impacto-negativo-en-el-desarrollo-de-los-ninos-y-ninas/</a></p>
+                
+                <p><strong>15.</strong> Estar constantemente conectado: beneficios y efectos nocivos del consumo digital en niños y adolescentes - HealthyChildren.org, fecha de acceso: agosto 29, 2025, <a href="https://www.healthychildren.org/Spanish/family-life/Media/Paginas/adverse-effects-of-television-commercials.aspx" target="_blank" style="color: #8d6e63; text-decoration: none;">https://www.healthychildren.org/Spanish/family-life/Media/Paginas/adverse-effects-of-television-commercials.aspx</a></p>
+                
+                <p><strong>16.</strong> Recomendaciones para el uso responsable de las tecnologías en casa, fecha de acceso: agosto 29, 2025, <a href="https://www.buenosaires.gob.ar/sites/default/files/2024-08/recomendaciones%20para%20el%20uso%20de%20las%20tecnologias.pdf" target="_blank" style="color: #8d6e63; text-decoration: none;">https://www.buenosaires.gob.ar/sites/default/files/2024-08/recomendaciones%20para%20el%20uso%20de%20las%20tecnologias.pdf</a></p>
+            </div>
+        </section>
+
+        <section id="conclusion" class="content-section">
+            <h2>Conclusión</h2>
+            
+            <div class="highlight">
+                <p><strong>Reflexión Final:</strong> Queremos reflexionar sobre cómo encontrar un equilibrio entre el uso de dispositivos y las interacciones cara a cara, ya que el desarrollo de habilidades sociales es fundamental para la infancia y para la vida en comunidad.</p>
+            </div>
+
+            <p>El impacto de la tecnología en la socialización de los niños es un fenómeno complejo que no puede ser clasificado simplemente como positivo o negativo. Los hallazgos presentados en este informe demuestran que la tecnología, si bien presenta riesgos significativos como la atrofia de habilidades no verbales, la ansiedad, el ciberacoso y la exposición a contenido inapropiado, también ofrece claras oportunidades para el desarrollo de la cooperación, la resiliencia y la construcción de comunidades.</p>
+
+            <p>La dicotomía entre el mundo digital y el presencial es cada vez más difusa; la socialización de hoy en día es un híbrido de ambos entornos. El problema no reside en la herramienta tecnológica en sí misma, sino en la falta de mediación activa por parte de los adultos, ya sean padres o educadores.</p>
+
+            <p>Los datos cuantitativos muestran que el uso de pantallas supera con creces las recomendaciones de salud, lo que evidencia la necesidad urgente de un cambio de paradigma. <strong>La solución no es la prohibición, sino la educación, la supervisión y la promoción de un uso equilibrado y consciente.</strong></p>
+
+            <p>De cara al futuro, es imperativo que las políticas públicas, las instituciones educativas y los padres se centren en la alfabetización digital crítica. Se necesita más investigación a largo plazo para comprender plenamente el impacto de las tecnologías emergentes como la IA y la Realidad Virtual en la cognición y el desarrollo social de los niños.</p>
+
+            <div class="highlight">
+                <p><strong>Llamado a la Acción:</strong> Al tiempo que los padres aprenden a modelar un comportamiento saludable con los dispositivos, las empresas de tecnología deben asumir la responsabilidad de diseñar plataformas que prioricen el bienestar sobre la monetización del tiempo, asegurando así un entorno digital más seguro y constructivo para las futuras generaciones.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Integrantes: Moya, Barceló y Canaparo</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remover clase active de todos los botones
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Mostrar la sección seleccionada
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Activar el botón correspondiente
+            event.target.classList.add('active');
+            
+            // Scroll suave hacia arriba
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
